@@ -29,12 +29,13 @@ export default class App extends Component {
   };
 
   handleLeaveFeedback = e => {
+    const { id } = e.target;
     this.setState(prevState => {
       // console.log([e.target.id]);
       // console.log(prevState);
       // console.log(prevState[e.target.id]);
       return {
-        [e.target.id]: prevState[e.target.id] + 1,
+        [id]: prevState[id] + 1,
       };
     });
   };
@@ -43,11 +44,14 @@ export default class App extends Component {
     const { good, neutral, bad } = this.state;
     const total = this.countTotalFeedback();
     const positivePercentage = this.countPositiveFeedbackPercentage();
-
+    const objKey = Object.keys(this.state);
     return (
       <Container>
         <Section title="Please leave feedback">
-          <FeedbackOptions onLeaveFeedback={this.handleLeaveFeedback} />
+          <FeedbackOptions
+            options={objKey}
+            onLeaveFeedback={this.handleLeaveFeedback}
+          />
         </Section>
         <Section title="Statistics">
           {total > 0 ? (
