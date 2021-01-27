@@ -6,6 +6,7 @@ function FeedbackOptions({ options, onLeaveFeedback }) {
     <>
       {options.map(option => (
         <button
+          key={option}
           className={s.button}
           type="button"
           id={option}
